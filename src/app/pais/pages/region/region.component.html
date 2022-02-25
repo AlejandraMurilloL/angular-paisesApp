@@ -1,1 +1,19 @@
-<p>region works!</p>
+<h3>Buscar por región <strong>{{regionSeleccionada | titlecase }}</strong></h3>
+<hr>
+<h4>Selecciona la región</h4>
+
+<!-- [class.active]="regionSeleccionada == region" -->
+<!-- [ngClass]="{
+    'btn-outline-primary': regionSeleccionada != region,
+    'btn-primary' : regionSeleccionada == region
+}" -->
+
+<div class="row">
+    <div class="col">
+        <button 
+            *ngFor="let region of regiones" 
+            [class]="getClaseCSSBtnRegion(region)"
+            (click)="seleccionarRegion(region)"
+        > {{ region | titlecase }}</button>
+    </div>
+</div>
