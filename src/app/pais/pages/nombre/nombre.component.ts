@@ -26,4 +26,9 @@ export class NombreComponent {
       this.paises = [];
     }});
   }
+
+  mostrarSugerencias(termino: string): void {
+    this.hayError = false;
+    // TODO: crear sugerencias
+  }
 }
