@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { CapitalComponent } from './pages/capital/capital.component';
 import { NombreComponent } from './pages/nombre/nombre.component';
 import { PaisDetailsComponent } from './pages/pais-details/pais-details.component';
@@ -23,7 +24,8 @@ import { RegionComponent } from './pages/region/region.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ]
 })
 export class PaisModule { }
