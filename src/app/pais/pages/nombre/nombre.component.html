@@ -1,12 +1,15 @@
-<h2>Por país:</h2>
-<hr>
-<div class="row">
-    <div class="col">
-        <app-pais-search (onSubmit)="buscar($event)" (onDebounce)="mostrarSugerencias($event)" placeholder="País..."></app-pais-search>
+<div class="animate__animated animate__fadeIn animate__faster">
+    
+    <h2>Por país:</h2>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <app-pais-search (onSubmit)="buscar($event)" (onDebounce)="mostrarSugerencias($event)" placeholder="País..."></app-pais-search>
+        </div>
     </div>
+    
+    <hr>
 </div>
-
-<hr>
 <div class="alert alert-danger" *ngIf="hayError">
     No se encontró nada con el termino {{ nombre }}
 </div>

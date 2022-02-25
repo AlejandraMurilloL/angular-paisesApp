@@ -1,19 +1,27 @@
-<h3>Buscar por región <strong>{{regionSeleccionada | titlecase }}</strong></h3>
-<hr>
-<h4>Selecciona la región</h4>
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h3>Buscar por región <strong>{{regionSeleccionada | titlecase }}</strong></h3>
+    <hr>
+    <h4>Selecciona la región</h4>
+    
+    <!-- [class.active]="regionSeleccionada == region" -->
+    <!-- [ngClass]="{
+        'btn-outline-primary': regionSeleccionada != region,
+        'btn-primary' : regionSeleccionada == region
+    }" -->
+    
+    <div class="row">
+        <div class="col">
+            <button 
+                *ngFor="let region of regiones" 
+                [class]="getClaseCSSBtnRegion(region)"
+                (click)="seleccionarRegion(region)"
+            > {{ region | titlecase }}</button>
+        </div>
+    </div>
+</div>
 
-<!-- [class.active]="regionSeleccionada == region" -->
-<!-- [ngClass]="{
-    'btn-outline-primary': regionSeleccionada != region,
-    'btn-primary' : regionSeleccionada == region
-}" -->
-
-<div class="row">
+<div *ngIf="paises.length > 0" class="row">
     <div class="col">
-        <button 
-            *ngFor="let region of regiones" 
-            [class]="getClaseCSSBtnRegion(region)"
-            (click)="seleccionarRegion(region)"
-        > {{ region | titlecase }}</button>
+        <app-pais-list [paises]="paises"></app-pais-list>
     </div>
 </div>
