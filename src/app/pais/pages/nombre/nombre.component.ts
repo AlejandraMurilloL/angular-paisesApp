@@ -16,7 +16,8 @@ export class NombreComponent {
 
   constructor(private paisService: PaisService) { }
 
-  buscar(): void {
+  buscar(termino: string): void {
+    this.nombre = termino;
     this.hayError = false;
     this.paisService.buscarPaisesByName(this.nombre).subscribe({ next: (paises) => {
       this.paises = paises;
