@@ -4,10 +4,18 @@
     <hr>
     <div class="row">
         <div class="col">
-            <app-pais-search (onSubmit)="buscar($event)" (onDebounce)="mostrarSugerencias($event)" placeholder="País..."></app-pais-search>
+            <app-pais-search (onSubmit)="buscar($event)" (onDebounce)="mostrarListadoSugerencias($event)" placeholder="País..."></app-pais-search>
         </div>
     </div>
-    
+    <ul class="list-group" *ngIf="mostrarSugerencias">
+        <li class="list-group-item list-group-item-action" *ngFor="let paisSugerido of paisesSugeridos">
+            <a class="nav-link" [routerLink]="['/pais', paisSugerido.cca2]">{{ paisSugerido.name.common }}</a>
+        </li>
+
+        <li class="list-group-item list-group-item-action" (click)="buscar(nombre)">
+            <a class="nav-link">Buscar "{{ nombre }}"</a>
+        </li>
+    </ul>
     <hr>
 </div>
 <div class="alert alert-danger" *ngIf="hayError">

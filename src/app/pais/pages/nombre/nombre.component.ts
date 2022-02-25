@@ -5,7 +5,11 @@ import { PaisService } from '../../services/pais.service';
 @Component({
   selector: 'app-nombre',
   templateUrl: './nombre.component.html',
-  styles: [
+  styles: [`
+    li {
+      cursor: pointer;
+    }
+  `
   ]
 })
 export class NombreComponent {
@@ -13,12 +17,15 @@ export class NombreComponent {
   nombre: string = '';
   hayError: boolean = false; 
   paises: Country[] = [];
+  paisesSugeridos: Country[] = [];
+  mostrarSugerencias: boolean = false;
 
   constructor(private paisService: PaisService) { }
 
   buscar(termino: string): void {
     this.nombre = termino;
-    this.hayError = false;
+    this.hayError = false;    
+    this.mostrarSugerencias = false;
     this.paisService.buscarPaisesByName(this.nombre).subscribe({ next: (paises) => {
       this.paises = paises;
     }, error: () => {
@@ -27,8 +34,13 @@ export class NombreComponent {
     }});
   }
 
-  mostrarSugerencias(termino: string): void {
+  mostrarListadoSugerencias(termino: string): void {
     this.hayError = false;
-    // TODO: crear sugerencias
+    this.nombre = termino;
+    this.mostrarSugerencias = true;
+    this.paisService.buscarPaisesByName(termino).subscribe({
+      next: paises => this.paisesSugeridos = paises.splice(0, 5),
+      error: () => this.paisesSugeridos = []
+    });
   }
 }
