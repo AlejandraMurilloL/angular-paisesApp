@@ -1,1 +1,18 @@
-<p>capital works!</p>
+<h2>Por capital:</h2>
+<hr>
+<div class="row">
+    <div class="col">
+        <app-pais-search (onSubmit)="buscar($event)" (onDebounce)="mostrarSugerencias($event)"></app-pais-search>
+    </div>
+</div>
+
+<hr>
+<div class="alert alert-danger" *ngIf="hayError">
+    No se encontró nada con el termino {{ capital }}
+</div>
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+        <app-pais-list [paises]="paises"></app-pais-list>
+    </div>
+</div>
